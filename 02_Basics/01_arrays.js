@@ -22,3 +22,19 @@ const another_array = [11, 22, 33, [44, 55, 66], 77, [66, 77, [44, 55]]]
 
 const real_another_array = another_array.flat(Infinity)
 console.log(real_another_array);
+
+let selector = ".luxury!"; 
+
+// 1. Turn string into an array
+let chars = selector.split(""); 
+// [".", "l", "u", "x", "u", "r", "y", "!"] string to array
+
+// 2. The "Front-Pop" (shift)
+let marker = chars.shift(); // "." removed
+
+// 3. The "Back-Pop" (pop)
+let extra = chars.pop();  // "!" removed
+
+
+// 4. Join what's left
+let name = chars.join("") // "luxury" array to string
