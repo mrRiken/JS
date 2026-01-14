@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM3</title>
+</head>
+ <body bgcolor="black" text="white">
+    
+</body>
+<script>
+
+   const div = document.createElement("div")
+   div.className = "main"
+   div.id = (Math.random() * 10 + 1).toPrecision(2)
+   div.setAttribute("title","generated title")
+
+   div.style.backgroundColor = "gold"
+   div.style.color = "purple"
+   div.style.padding = '10px'
+
+//    _____________________________________________________
+// 1)
+//    div.innerHTML = "JS AND ME"
+
+// 2)
+    const addText = document.createTextNode("JS AND ME")
+    div.appendChild(addText)
+//    _____________________________________________________
+
+    
+
+document.body.appendChild(div) // appending element to main body
+   console.log(div)
+</script>
+</html>
