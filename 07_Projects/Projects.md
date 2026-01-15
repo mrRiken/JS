@@ -104,3 +104,129 @@ setInterval(() => {
 
 
 ```
+
+Project 4
+
+``` javascript
+
+function answerChecker(guessedNumber, answerNumber) {
+  if (isNaN(guessedNumber) || guessedNumber < 1 || guessedNumber > 100) {
+    return 'INVALID';
+  }
+
+  if (guessedNumber === answerNumber) {
+    return 'PASSED';
+  } else if (guessedNumber > answerNumber) {
+    return 'HIGH';
+  } else if (guessedNumber < answerNumber) {
+    return 'LOW';
+  }
+}
+
+function display(
+  result,
+  guessedNumber,
+  guessedNumberBox,
+  play,
+  previousGuesses,
+  previousGuessesBox
+) {
+  const message = document.querySelector('.lowOrHi');
+  const remainingGuesss = document.querySelector('.lastResult');
+
+  const myBtn = document.getElementById('subt');
+
+  function itemsToDisplay() {
+    previousGuesses.push(guessedNumber);
+    previousGuessesBox.textContent = previousGuesses;
+    remainingGuesss.textContent = play;
+    guessedNumberBox.value = '';
+    guessedNumberBox.focus();
+  }
+  switch (result) {
+    case 'PASSED':
+      myBtn.disabled = true;
+      message.textContent = `Correct guess`;
+      previousGuesses.push(guessedNumber);
+
+      previousGuessesBox.textContent = previousGuesses;
+
+      guessedNumberBox.focus();
+      guessedNumberBox.disabled = true;
+      break;
+
+    case 'HIGH':
+      message.textContent = 'guess is high';
+      itemsToDisplay();
+      break;
+
+    case 'LOW':
+      message.textContent = 'guess is low';
+      itemsToDisplay();
+      break;
+
+    case 'GAMEOVER':
+      previousGuesses.push(guessedNumber);
+      previousGuessesBox.textContent = previousGuesses;
+
+      myBtn.disabled = true;
+      message.textContent = 'GAME OVER';
+      remainingGuesss.textContent = play;
+      guessedNumberBox.disabled = true;
+
+      break;
+    default:
+      message.textContent = 'something is not right :/';
+      break;
+  }
+}
+
+function game() {
+  let myForm = document.querySelector('.form');
+  const answerNumber = Math.floor(Math.random() * 100) + 1;
+
+  let play = 10;
+  let previousGuesses = [];
+  const previousGuessesBox = document.querySelector('.guesses');
+  // console.log(answerNumber); // help for debugging
+  myForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let guessedNumberBox = document.querySelector('.guessField');
+    let guessedNumber = parseInt(guessedNumberBox.value);
+    let result = answerChecker(guessedNumber, answerNumber);
+
+    if (result !== 'INVALID') {
+      if (result !== 'PASSED') {
+        play--;
+      }
+
+      if (play <= 0 && result !== 'PASSED') {
+        display(
+          'GAMEOVER',
+          guessedNumber,
+          guessedNumberBox,
+          play,
+          previousGuesses,
+          previousGuessesBox
+        );
+        return 'GAMEOVER';
+      }
+      display(
+        result,
+        guessedNumber,
+        guessedNumberBox,
+        play,
+        previousGuesses,
+        previousGuessesBox
+      );
+    } else if (result === 'INVALID') {
+      const message = document.querySelector('.lowOrHi');
+      message.textContent = 'Enter a number between 1 and 100';
+      return;
+    }
+  });
+}
+game();
+
+
+```
