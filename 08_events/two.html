@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVENTS</title>
+  </head>
+  <body>
+    <h1>JS EVENTS</h1>
+    <button id="stop">Stop</button>
+  </body>
+  <script>
+
+    //                set and clear Timeout
+    missed = false
+    const sayRiken = () => {
+      console.log("Train Missed");
+      missed = true;
+    };
+    const changeHeading = () => {
+      document.querySelector("h1").textContent = "God damn Events";
+    };
+
+    const myLog = setTimeout(sayRiken, 2000); // setting 2seconds timer in background
+
+    document.getElementById("stop").addEventListener("click", (e) => {
+      if (missed) {
+        console.log("You missed the train");
+      } else {
+        clearTimeout(myLog); // cleared out setTimeout task in background
+        console.log("You were on time");
+      }
+    });
+
+  </script>
+</html>
