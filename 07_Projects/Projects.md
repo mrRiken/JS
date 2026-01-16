@@ -228,6 +228,8 @@ function game() {
 }
 game();
 
+```
+
 Project 5
 
 ``` javascript
@@ -251,9 +253,6 @@ window.addEventListener('keydown', (e) => {
 </table> </div>
   `;
 });
-
-
-```
 
 ```
 
