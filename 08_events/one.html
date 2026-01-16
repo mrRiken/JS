@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+<li>
+  <img width="200px" id="mountain"
+       src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80"
+       alt="mountain">
+</li>
+
+<li>
+  <img width="200px" id="casio"
+       src="https://images.pexels.com/photos/11106320/pexels-photo-11106320.jpeg"
+       alt="casio">
+</li>
+
+<li>
+  <img width="200px" id="forest"
+       src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=80"
+       alt="forest">
+</li>
+
+<li>
+  <img width="200px" id="animal"
+       src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1600&q=80"
+       alt="animal">
+</li>
+
+<li>
+  <img width="200px" id="temple"
+       src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1600&q=80"
+       alt="temple">
+</li>
+
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+
+// old traditional method
+// 1) document.getElementById("mountain").onclick = () => {
+//     alert("mountain");
+// 
+// 2) attachEvent()
+// 3) jQuery - on
+
+
+/* 1. bubbeling events            2. capturing events
+
+document.getElementById('images').addEventListener("click",(e)=>{
+    console.log("clicked images")
+
+})
+
+document.getElementById('mountain').addEventListener("click",(e)=>{
+    console.log("clicked mountains")
+
+},false)
+
+    2.
+    document.getElementById('images').addEventListener("click",(e)=>{
+    console.log("clicked images")
+
+})  
+    document.getElementById('mountain').addEventListener("click",(e)=>{
+        console.log("clicked mountains")
+    },true)
+        // ^----- true enables capturing mode
+*/
+
+// stopped bubbeling by stopPropogation()
+
+// document.getElementById('mountain').addEventListener("click",(e)=>{
+//     e.stopPropagation()
+//     console.log("clicked mountains")
+
+// },false)
+
+
+// to stop default events we use preventDefault()
+// document.getElementById("google").addEventListener("click",(e)=>{
+//     e.preventDefault()
+//     console.log("Clicked linked")
+// })
+
+//  when we click the images or links, they will be removed
+document.getElementById('images').addEventListener("click",(e)=>{
+    e.preventDefault()
+    if (e.target.tagName !== "LI"){
+        let pElement = e.target.parentNode
+        pElement.remove()
+    }
+
+})
+</script>
+</html>
