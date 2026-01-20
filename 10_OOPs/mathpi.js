@@ -1,3 +1,4 @@
+// Creating controlled objects via defineProperties
 const myCar = {
     model:"Miura",
     isDiscontinued:true
