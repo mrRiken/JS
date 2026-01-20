@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="orange">Orange</button><button id="green">Green</button>
+  </body>
+  <!-- <script>
+    function outer(name2, num1 = 11, num2 = 31) {
+      let username = "riken";
+      function inner() {
+        let username2 = username;
+        console.log(username2, name2, num1, num2); // this works because of lexical resources
+      }
+      inner();
+    }
+    outer("patel");    
+  </script>
+  <script>
+function outer(name2, num1 = 11, num2 = 31) {
+  let username = "riken";
+
+  function inner() {
+    let username2 = username;
+    console.log(username2, name2, num1, num2);
+  }
+
+  return inner;
+}
+
+const fn = outer("patel");
+fn();
+
+  </script>
+   -->
+  <script>
+
+function clickHandler(color){
+
+      return  function(){
+        document.body.style.backgroundColor=`${color}`
+    }
+
+}
+document.getElementById("orange").onclick = clickHandler("orange")
+document.getElementById("green").onclick = clickHandler("green")
+  </script>
+</html>
